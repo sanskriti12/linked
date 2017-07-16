@@ -15,57 +15,56 @@ void merging(struct node* head1,struct node* head2)
 	
 	struct node* current1=head1;
 	struct node* current2=head2;
-	struct node* current=head;
+
 	if(current1->data<current2->data)
 	{
-		current->data=current1->data;
+		head=current1->data;
 		current1=current1->link;
 	}
 	else
 	{
-		current->data=current2->data;
+		head=current2->data;
 		current2=current2->link;
 	}
-	while(current!=NULL && current2!=NULL)
+	struct node* current=head;
+	while(current1!=NULL && current2!=NULL)
 	{
-		struct node* next=(struct node*)malloc(sizeof(struct node));
+		
 		if(current1->data<current2->data)
 		{
-			next->data=current1->data;
+			current->link=current1->link;
+			current=current->link;
 			current1=current1->link;
 		}
 		else
 		{
-			next->data=current2->data;
+                 current->link=current1->link;
+			current=current->link;
+		
 		current2=current2->link;
 			
 		}
 
-		current->link=next;
-		current=next;
 		
 	}
 	
 	while(current1!=NULL)
 	{
-		struct node* next=(struct node*)malloc(sizeof(struct node));
-		next->data=current1->data;
-		current1=current1->link;
-		current->link=next;
-		current=next;
+		current->link=current1;
+    current=current->link;
+	current1=current1->link;	
+		
 		
 	}
 	while(current2!=NULL)
 	{
-		struct node* next=(struct node*)malloc(sizeof(struct node));
-		next->data=current2->data;
-		current2=current2->link;
-		current->link=next;
-		current=next;
+		current->link=current2;
+    current=current->link;
+	current2=current2->link;	
 		
 		
 	}
-	current->link=NULL;
+	return head;
 }
 void push(struct node** head,int newdata)
    {
