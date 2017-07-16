@@ -8,7 +8,7 @@ struct node
 };
 
 
-void merging(struct node* head1,struct node* head2)
+struct node* merging(struct node* head1,struct node* head2)
 {
 	
 	struct node* head;
